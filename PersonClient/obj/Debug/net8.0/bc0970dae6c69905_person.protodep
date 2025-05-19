@@ -1,0 +1,3 @@
+obj\Debug\net8.0/Person.cs \
+obj\Debug\net8.0/PersonGrpc.cs: C:/Users/AsusIran/.nuget/packages/grpc.tools/2.63.0/build/native/include/google/protobuf/empty.proto\
+ ../PersonApi/Protos/person.proto

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "PersonApi.Protos";
+
+import "google/protobuf/empty.proto";
+
+message Person {
+  int32 id = 1;
+  string name = 2;
+  string familyName = 3;
+  string socialNumber = 4;
+  string birthDate = 5;
+}
+
+message PersonIdRequest {
+  int32 id = 1;
+}
+
+message PersonResponse {
+  int32 id = 1;
+}
+
+message PersonList {
+  repeated Person people = 1;
+}
+
+service PersonService {
+  rpc CreatePerson(Person) returns (PersonResponse);
+  rpc GetPerson(PersonIdRequest) returns (Person);
+  rpc UpdatePerson(Person) returns (google.protobuf.Empty);
+  rpc DeletePerson(PersonIdRequest) returns (google.protobuf.Empty);
+  rpc GetAllPersons(google.protobuf.Empty) returns (PersonList);
+}
