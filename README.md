@@ -14,6 +14,7 @@ Structuring a simple .NET gRPC API
 Running and testing RPC-based CRUD operations
 
 
+
 ✨ Features
 📡 Dual Protocol Support: gRPC for high performance and REST for broad compatibility
 
@@ -24,6 +25,7 @@ Running and testing RPC-based CRUD operations
 📚 Swagger Documentation: Automated API documentation with Swagger/OpenAPI
 
 🎯 Clean Architecture: Standard and extensible project structure
+
 
 🏗️ Project Architecture
 PersonApi.sln
@@ -36,6 +38,7 @@ PersonApi.sln
 │
 └── PersonClient/              # gRPC client project
      └── Program.cs            # Sample client to test CRUD operations
+
 
 
 🚀 Getting Started
@@ -61,6 +64,7 @@ gRPC Service: https://localhost:7001
 
 Swagger UI: https://localhost:7001/swagger
 
+
 📡 API Endpoints
 REST API
 Method	Endpoint	Description
@@ -82,6 +86,7 @@ UpdatePerson - Update existing person
 
 DeletePerson - Remove person
 
+
 🛠️ Development
 Building the Project
 dotnet build
@@ -97,6 +102,8 @@ Protos/: gRPC service contract definitions (.proto files)
 Models/: Data transfer objects and entities
 
 Repositories/: Data access abstraction layer
+
+
 
 📌 Possible Improvements
 
@@ -114,6 +121,8 @@ Docker support
 
 gRPC-Web support for browser clients
 
+
+
 🔧 Configuration
 The application can be configured through appsettings.json:
 {
@@ -128,6 +137,7 @@ The application can be configured through appsettings.json:
     }
   }
 }
+
 
 
 📚 Usage Examples
@@ -148,6 +158,8 @@ var client = new PersonService.PersonServiceClient(channel);
 
 var response = await client.GetAllPersonsAsync(new GetAllPersonsRequest());
 
+
+
 🤝 Contributing
 Fork the repository
 
@@ -159,16 +171,23 @@ Push to the branch (git push origin feature/amazing-feature)
 
 Open a Pull Request
 
+
+
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 🐛 Issue Reporting
 If you find any bugs or have feature requests, please create an issue in the GitHub Issues section.
 
+
 🙏 Acknowledgments
+
 Built with ASP.NET Core 6
 
 gRPC for .NET
 
+
 Swagger for API documentation
+
 
