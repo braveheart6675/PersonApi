@@ -1,4 +1,5 @@
-﻿📌 Overview
+Person API (.Ne + GRPC)
+ 📌 Overview
 A modern and efficient API service for managing person information with support for both gRPC and REST protocols.
 PersonApi is a lightweight gRPC-based CRUD service built with .NET.
 It demonstrates how to define protobuf contracts, implement gRPC services, and consume them using a client application.
