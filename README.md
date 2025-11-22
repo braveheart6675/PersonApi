@@ -1,7 +1,7 @@
-Person API (.Ne + GRPC)
+PersonManagement-gRPC (.Ne + GRPC)
  📌 Overview
 A modern and efficient API service for managing person information with support for both gRPC and REST protocols.
-PersonApi is a lightweight gRPC-based CRUD service built with .NET.
+PersonManagement is a lightweight gRPC-based CRUD service built with .NET.
 It demonstrates how to define protobuf contracts, implement gRPC services, and consume them using a client application.
 
 This project is ideal for learning:
@@ -51,8 +51,8 @@ Visual Studio 2022 or VS Code
 (Optional) Postman for API testing
 
 1- Installation
-git clone https://github.com/braveheart6675/PersonApi.git
-cd PersonApi
+git clone https://github.com/braveheart6675/PersonManagement-gRPC.git
+cd PersonManagement-gRPC
 2- Restore dependencies
 dotnet restore
 3- Run the application
