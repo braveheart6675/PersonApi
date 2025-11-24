@@ -1,194 +1,183 @@
-PersonManagement-gRPC (.Ne + GRPC)
- 📌 Overview
-A modern and efficient API service for managing person information with support for both gRPC and REST protocols.
-PersonManagement is a lightweight gRPC-based CRUD service built with .NET.
-It demonstrates how to define protobuf contracts, implement gRPC services, and consume them using a client application.
+# PersonManagement gRPC Service 🚀
 
-This project is ideal for learning:
+![.NET](https://img.shields.io/badge/.NET-6.0-purple)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-6.0-blue)
+![gRPC](https://img.shields.io/badge/gRPC-2.42.0-green)
+![Entity Framework](https://img.shields.io/badge/Entity_Framework_Core-6.0-orange)
 
-gRPC Server & Client implementation
+A high-performance Person Management gRPC service built with **ASP.NET Core** and **Entity Framework Core**, demonstrating modern gRPC implementation with both gRPC and REST endpoints.
 
-Using Protobuf (.proto files)
+## 📋 Table of Contents
+- [✨ Features](#-features)
+- [🏗️ Architecture & Tech Stack](#️-architecture--tech-stack)
+- [🚀 Quick Start](#-quick-start)
+- [📡 API Endpoints](#-api-endpoints)
+- [🔧 Project Structure](#-project-structure)
+- [🛠️ Development](#️-development)
+- [🐳 Docker Support](#-docker-support)
+- [🤝 Contributing](#-contributing)
 
-Structuring a simple .NET gRPC API
+## ✨ Features
 
-Running and testing RPC-based CRUD operations
+- **⚡ High-Performance gRPC** - Binary protocol for fast communication
+- **🔄 Dual Protocol Support** - Both gRPC and REST APIs
+- **🛢️ Entity Framework Core** - Data access with SQL Server
+- **📚 Swagger Documentation** - REST API documentation
+- **🎯 Clean Architecture** - Separation of concerns
+- **🔒 Error Handling** - Comprehensive error management
+- **🐳 Docker Ready** - Containerized deployment
 
+## 🏗️ Architecture & Tech Stack
 
+### Core Technologies
+- **.NET 6.0** - Cross-platform framework
+- **ASP.NET Core** - Web API framework
+- **gRPC for .NET** - High-performance RPC
+- **Entity Framework Core** - ORM and data access
+- **SQL Server** - Database (configurable)
+- **Protocol Buffers** - Interface definition
 
-✨ Features
-📡 Dual Protocol Support: gRPC for high performance and REST for broad compatibility
+### Protocols & Tools
+- **gRPC** - Primary communication protocol
+- **REST API** - Secondary HTTP endpoints
+- **Swagger/OpenAPI** - API documentation
+- **Docker** - Containerization
 
-🛢️ In-Memory Storage: Repository pattern with temporary storage
+## 🚀 Quick Start
 
-🔒 Error Handling: Comprehensive error handling implementation
+### Prerequisites
+- .NET 6.0 SDK
+- SQL Server (LocalDB or full)
+- Visual Studio 2022 / VS Code
 
-📚 Swagger Documentation: Automated API documentation with Swagger/OpenAPI
+### Installation
 
-🎯 Clean Architecture: Standard and extensible project structure
-
-
-🏗️ Project Architecture
-PersonApi.sln
-│
-├── PersonApi/                 # gRPC server project
-│    ├── Protos/               # .proto definitions
-│    ├── Services/             # gRPC service implementations
-│    ├── Models/               # Person model
-│    └── Program.cs            # App entry point
-│
-└── PersonClient/              # gRPC client project
-     └── Program.cs            # Sample client to test CRUD operations
-
-
-
-🚀 Getting Started
-Prerequisites
-.NET 6.0 SDK or later
-
-Visual Studio 2022 or VS Code
-
-(Optional) Postman for API testing
-
-1- Installation
+1. **Clone the repository**
+```bash
 git clone https://github.com/braveheart6675/PersonManagement-gRPC.git
 cd PersonManagement-gRPC
-2- Restore dependencies
-dotnet restore
-3- Run the application
+
+Database setup
+Update appsettings.json:
+
+json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=PersonManagement;Trusted_Connection=true;"
+  }
+}
+
+Run database migrations
+
+bash
+dotnet ef database update
+
+Run the application
+
+bash
 dotnet run
-4- Access the application
 
-REST API: https://localhost:7001
-
+Access Points
 gRPC Service: https://localhost:7001
+
+REST API: https://localhost:7001/api/person
 
 Swagger UI: https://localhost:7001/swagger
 
-
 📡 API Endpoints
-REST API
+gRPC Services
+protobuf
+service PersonService {
+  rpc CreatePerson (CreatePersonRequest) returns (PersonResponse);
+  rpc GetPerson (GetPersonRequest) returns (PersonResponse);
+  rpc GetAllPersons (GetAllPersonsRequest) returns (PersonsResponse);
+  rpc UpdatePerson (UpdatePersonRequest) returns (PersonResponse);
+  rpc DeletePerson (DeletePersonRequest) returns (DeletePersonResponse);
+}
+
+REST Endpoints
+
 Method	Endpoint	Description
 GET	/api/person	Get all persons
 GET	/api/person/{id}	Get person by ID
 POST	/api/person	Create new person
-PUT	/api/person/{id}	Update existing person
+PUT	/api/person/{id}	Update person
 DELETE	/api/person/{id}	Delete person
-gRPC Services
-The project includes gRPC service definitions for:
 
-GetAllPersons - Retrieve all persons
-
-GetPersonById - Get specific person by ID
-
-CreatePerson - Create new person
-
-UpdatePerson - Update existing person
-
-DeletePerson - Remove person
-
+🔧 Project Structure
+text
+PersonManagement-gRPC/
+├── Protos/                 # gRPC service definitions
+│   └── person.proto
+├── Services/              # gRPC service implementations
+├── Controllers/           # REST API controllers
+├── Models/               # Data models and entities
+├── Data/                # DbContext and data access
+├── Migrations/          # Database migrations
+├── Properties/          # Project configuration
+└── Program.cs           # Application entry point
 
 🛠️ Development
-Building the Project
+Build and Run
+bash
 dotnet build
-Running Tests
-dotnet test
-Code Structure
-Controllers/: HTTP REST API controllers
+dotnet run
+Database Management
+bash
+# Create new migration
+dotnet ef migrations add InitialCreate
 
-Services/: Business logic and service layer
+# Update database
+dotnet ef database update
 
-Protos/: gRPC service contract definitions (.proto files)
+gRPC Client Testing
+Use tools like:
 
-Models/: Data transfer objects and entities
+BloomRPC - GUI gRPC client
 
-Repositories/: Data access abstraction layer
+grpcurl - Command line tool
 
+Postman - Latest versions support gRPC
 
+🐳 Docker Support
+Docker Compose
+version: '3.8'
+services:
+  person-api:
+    build: .
+    ports:
+      - "7001:80"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=PersonManagement;User=sa;Password=YourPassword123;
+    depends_on:
+      - db
 
-📌 Possible Improvements
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "YourPassword123"
+      ACCEPT_EULA: "Y"
 
-You may enhance this project by adding:
-
-Database integration (EF Core + SQL Server / SQLite)
-
-Authentication & Authorization
-
-Global exception handling / logging middleware
-
-Unit & integration tests
-
-Docker support
-
-gRPC-Web support for browser clients
-
-
-
-🔧 Configuration
-The application can be configured through appsettings.json:
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information"
-    }
-  },
-  "Kestrel": {
-    "EndpointDefaults": {
-      "Protocols": "Http1AndHttp2"
-    }
-  }
-}
-
-
-
-📚 Usage Examples
-REST API Example
-
-# Get all persons
-curl -X GET https://localhost:7001/api/person
-
-# Create new person
-curl -X POST https://localhost:7001/api/person \
-  -H "Content-Type: application/json" \
-  -d '{"name": "John Doe", "email": "john@example.com"}'
-
-  gRPC Client Example
-  // Example gRPC client usage
-var channel = GrpcChannel.ForAddress("https://localhost:7001");
-var client = new PersonService.PersonServiceClient(channel);
-
-var response = await client.GetAllPersonsAsync(new GetAllPersonsRequest());
-
-
-
+Docker Commands
+bash
+docker build -t personmanagement-grpc .
+docker run -p 7001:80 personmanagement-grpc
 🤝 Contributing
+Contributions welcome! Please feel free to submit PRs or open issues.
+
 Fork the repository
 
-Create a feature branch (git checkout -b feature/amazing-feature)
+Create your feature branch (git checkout -b feature/AmazingFeature)
 
-Commit your changes (git commit -m 'Add some amazing feature')
+Commit your changes (git commit -m 'Add some AmazingFeature')
 
-Push to the branch (git push origin feature/amazing-feature)
+Push to the branch (git push origin feature/AmazingFeature)
 
 Open a Pull Request
-
-
 
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+⭐ Star this repo if you find it helpful!
 
-🐛 Issue Reporting
-If you find any bugs or have feature requests, please create an issue in the GitHub Issues section.
-
-
-🙏 Acknowledgments
-
-Built with ASP.NET Core 6
-
-gRPC for .NET
-
-
-Swagger for API documentation
-
-
+Built with ❤️ using ASP.NET Core gRPC
